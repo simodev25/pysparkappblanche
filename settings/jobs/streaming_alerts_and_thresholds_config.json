@@ -1,0 +1,10 @@
+{
+  "spark.kafka.servers": "kafka-broker:9092",
+  "spark.kafka.topics.alerts": "streaming.alerts.input",
+  "spark.kafka.topics.alerts.critical": "streaming.alerts.critical",
+  "spark.kafka.topics.alerts.highvolume": "streaming.alerts.highvolume",
+  "postgres.dbname": "streaming",
+  "postgres.user": "streaming",
+  "postgres.password": "streaming",
+  "postgres.host": "streaming-postgres"
+}

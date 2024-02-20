@@ -1,0 +1,14 @@
+
+settings/__pycache__/
+
+src/helpers/__pycache__/
+
+src/helpers/db/__pycache__/
+
+src/repositories/__pycache__/
+
+src/services/__pycache__/
+
+src/usecases/__pycache__/
+
+tests/__pycache__/

@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  spark:
+    build: .
+    container_name: spark_python_container
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/workspace
+
+networks:
+  spark:
+    name: spark
+    external: true

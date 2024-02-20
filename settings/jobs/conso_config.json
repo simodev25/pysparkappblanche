@@ -1,0 +1,7 @@
+{
+  "spark.countepce.smd": "./files/SMDC01_20200115100204563.csv",
+  "postgres.dbname": "streaming",
+  "postgres.user": "streaming",
+  "postgres.password": "streaming",
+  "postgres.host": "streaming-postgres"
+}

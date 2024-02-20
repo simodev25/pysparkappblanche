@@ -1,0 +1,8 @@
+{
+  "spark.kafka.servers": "kafka-broker:9092",
+  "spark.kafka.topic": "streaming.conso.input",
+  "postgres.dbname": "streaming",
+  "postgres.user": "streaming",
+  "postgres.password": "streaming",
+  "postgres.host": "streaming-postgres"
+}

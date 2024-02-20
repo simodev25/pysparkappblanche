@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "app-pySpark"
+version = "0.1.0"
+description = ""
+authors = ["Mohammed BEN SASSI "]
+readme = "README.md"
+packages = [
+    { include = "usecases", from = "src" },
+]
+[tool.poetry.dependencies]
+python = "^3.10"
+sqlalchemy = ">=2.0.0"
+pyspark = "^3.5.0"
+quinn = "^0.10.0"
+py4j = "^0.10.9.5"
+psycopg2 = "^2.9.9"
+pandas = "^2.2.0"
+
+
+
+
+
+
+[tool.poetry.group.dev.dependencies]
+confluent-kafka = "^2.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
