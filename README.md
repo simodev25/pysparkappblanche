@@ -1,6 +1,8 @@
 # Instructions d'installation et de configuration
+```bash
 docker-compose up -d --build
 docker exec -it spark_python_container bash
+```
 ## Prérequis
 
 Installer les dépendances nécessaires :
