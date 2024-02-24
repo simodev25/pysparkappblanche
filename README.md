@@ -1,18 +1,19 @@
-# Instructions d'installation et de configuration
+
+# Installation and Configuration Instructions
 ```bash
 docker-compose up -d --build
 docker exec -it spark_python_container bash
 ```
-## Prérequis
+## Prerequisites
 
-Installer les dépendances nécessaires :
+Install the necessary dependencies:
 
 ```bash
  apt-get update
  apt-get install libpq-dev
 ```
 
-Créer un environnement virtuel Python et installer les paquets :
+Create a Python virtual environment and install packages:
 
 ```bash
 apt install python3.10-venv
@@ -21,34 +22,34 @@ env_app/bin/pip3 install -U pip setuptools
 env_app/bin/pip3 install poetry 
 ```
 
-Activer l'environnement virtuel :
+Activate the virtual environment:
 
 ```bash
 source env_app/bin/activate
 ```
 
 
-Installer les dépendances du projet avec Poetry :
+Install the project dependencies with Poetry:
 
 ```bash
 poetry install
 ```
 
-Exécuter le script Python :
+Run the Python script:
 
 ```bash
 poetry run python3 src/jobs/load_conso.py
 ```
 
-## Configuration de PostgreSQL avec Docker
+## PostgreSQL Configuration with Docker
 
-Lancer un conteneur Docker pour PostgreSQL :
+Launch a Docker container for PostgreSQL:
 
 ```bash
 docker run --name streaming-postgres --hostname streaming-postgres --network pysparkappblanche_default -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -d postgres
 ```
 
-Créer une base de données et configurer les utilisateurs :
+Create a database and configure users:
 
 ```sql
 CREATE DATABASE streaming;
@@ -58,7 +59,7 @@ CREATE USER streaming WITH PASSWORD 'streaming';
 GRANT ALL PRIVILEGES ON DATABASE streaming TO streaming;
 ```
 
-Créer les tables nécessaires :
+Create the necessary tables:
 
 ```sql
 CREATE TABLE conso (
@@ -84,39 +85,39 @@ GRANT ALL PRIVILEGES ON TABLE volume_total TO streaming;
 GRANT USAGE, SELECT ON SEQUENCE volume_total_id_seq TO streaming;
 ```
 
-## Configuration de Kafka avec Docker
+## Kafka Configuration with Docker
 
-Exécuter le conteneur Docker pour Kafka :
+Run the Docker container for Kafka:
 
 ```bash
 docker-compose -f kafka-single-node.yml up -d
 ```
 
-Vérifier si le conteneur Kafka est opérationnel :
+Check if the Kafka container is operational:
 
 ```bash
 docker ps
 ```
 
-Pour arrêter et supprimer la configuration :
+To stop and remove the configuration:
 
 ```bash
 docker-compose -f kafka-single-node.yml down
 ```
 
-Accéder au broker Kafka :
+Access the Kafka broker:
 
 ```bash
 docker exec -it kafka-broker /bin/bash
 ```
 
-Naviguer vers le répertoire des scripts Kafka :
+Navigate to the Kafka scripts directory:
 
 ```bash
 cd /opt/bitnami/kafka
 ```
 
-### Créer topic Kafka ###
+### Create Kafka Topic ###
 
 ```bash
 ./bin/kafka-topics.sh --bootstrap-server localhost:29092 --create --topic streaming.conso.input --partitions 1 --replication-factor 1
@@ -126,6 +127,4 @@ cd /opt/bitnami/kafka
 ./bin/kafka-topics.sh --bootstrap-server localhost:29092 --create --topic streaming.alerts.critical --partitions 1 --replication-factor 1
 
 ./bin/kafka-topics.sh --bootstrap-server localhost:29092 --create --topic streaming.alerts.highvolume --partitions 1 --replication-factor 1
-
-
 ```
